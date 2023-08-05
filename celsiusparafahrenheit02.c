@@ -57,8 +57,6 @@ double TestInput(int number)
 
 double TempInputs(int qt, double arr[]) 
 {
-    double grau = 0;
-
     for (int i = 0; i < qt; i++) 
     {
         arr[i] = TestInput(i + 1);
