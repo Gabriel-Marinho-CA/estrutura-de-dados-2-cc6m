@@ -24,8 +24,6 @@ double GetCoef(double arrValues[])
 {
     char letters[TAM] = {'a', 'b', 'c'};
 
-    double a, b, c;
-
     for (int i = 0; i < TAM; i++) 
     {
         arrValues[i] = TestInput(i + 1, letters[i]);
@@ -37,8 +35,6 @@ double GetCoef(double arrValues[])
 double TestInput(double value, char letter) 
 {
     double valueTest = value;
-    int charComparsion;
-    char a[] = "a";
     char str[100];
 
     sprintf(str, "%f", value);
@@ -66,11 +62,11 @@ double TestInput(double value, char letter)
     return valueTest;
 }
 
-// Função que calcula os elementos pedidos
 void CalcFunc(double arrValues[]) 
 {
     returnCalcValues values;
     double delta;
+
     delta = arrValues[1] * arrValues[1] - 4 * arrValues[0] * arrValues[2];
 
     if (arrValues[0] > 0) 
@@ -81,6 +77,7 @@ void CalcFunc(double arrValues[])
     {
         values.concavit = false;
     }
+
     values.yPoint = arrValues[2];
     values.vert1 = ((-arrValues[1]) / (2 * arrValues[0]));
     values.vert2 = arrValues[0] * pow(values.vert1, 2) + arrValues[1] * values.vert1 + arrValues[2];
@@ -110,27 +107,23 @@ void CalcFunc(double arrValues[])
 
 void PrintRes(returnCalcValues values) 
 {
+    char maxOrMin[8];
+
     if (values.concavit) 
     {
         printf("A parábola tem concavidade para cima.\n");
+        strcpy(maxOrMin, "mínimo");
     } 
 
     else 
     {
         printf("A parábola tem concavidade para baixo.\n");
+        strcpy(maxOrMin, "máximo");
     }
 
     printf("A parábola cruza o eixo y no ponto: %.2lf.\n", values.yPoint + 0.00);
   
-    if(values.concavit)
-    {
-        printf("As coordenadas do vértice (ponto mínimo) são: (%.2lf, %.2lf).\n", values.vert1 + 0.00, values.vert2 + 0.00);
-    }
-
-    else 
-    {
-        printf("As coordenadas do vértice (ponto máximo) são: (%.2lf, %.2lf).\n", values.vert1 + 0.00, values.vert2 + 0.00);
-    }
+    printf("As coordenadas do vértice (ponto %s) são: (%.2lf, %.2lf).\n", maxOrMin,values.vert1 + 0.00, values.vert2 + 0.00);
     
 
     if (values.root == false) 
